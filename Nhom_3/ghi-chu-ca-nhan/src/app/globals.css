@@ -1,97 +1,142 @@
+/* ===== THEME ===== */
 body.light {
-  background: #f3f4f6;
-  color: #111;
+  --bg: #f5f6fa;
+  --card: #ffffff;
+  --text: #1f2937;
+  --subtext: #6b7280;
+  --border: #e5e7eb;
 }
 
 body.dark {
-  background: #0f172a;
-  color: #fff;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f9fafb;
+  --subtext: #9ca3af;
+  --border: rgba(255,255,255,0.1);
 }
 
-/* layout */
+/* ===== GLOBAL ===== */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui;
+  transition: all 0.3s ease;
+}
+
 .container {
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
-  padding: 30px 20px;
+  padding: 40px 20px;
 }
 
-/* header */
+/* ===== HEADER ===== */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .header-right {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
 
 .badge {
-  background: linear-gradient(45deg, #a855f7, #6366f1);
+  background: linear-gradient(135deg, #a855f7, #6366f1);
   color: white;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .theme-btn {
   border: none;
-  padding: 8px 10px;
   border-radius: 50%;
+  padding: 8px 10px;
   cursor: pointer;
+  background: var(--card);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* form */
+/* ===== FORM ===== */
 .form {
-  margin-top: 20px;
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .form input {
   flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  outline: none;
 }
 
 .form button {
-  padding: 10px 15px;
-  border-radius: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
   border: none;
-  background: linear-gradient(45deg, #a855f7, #6366f1);
+  background: linear-gradient(135deg, #a855f7, #6366f1);
   color: white;
   cursor: pointer;
+  font-weight: 500;
 }
 
-/* list */
+/* ===== LIST ===== */
 .list {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* note */
+/* ===== NOTE CARD ===== */
 .note {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.1);
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: 0.2s;
 }
 
-body.dark .note {
-  background: rgba(255, 255, 255, 0.05);
+.note:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
+.note p {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.note small {
+  color: var(--subtext);
+  font-size: 12px;
+}
+
+/* ===== DELETE BUTTON ===== */
 .note button {
-  background: #ef4444;
   border: none;
-  color: white;
-  padding: 5px 10px;
+  background: rgba(239,68,68,0.1);
+  color: #ef4444;
+  padding: 6px 12px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* DARK chỉnh thêm */
+body.dark .note button {
+  background: rgba(239,68,68,0.2);
 }

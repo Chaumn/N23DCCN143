@@ -7,7 +7,7 @@ export default function Header({ count }: { count: number }) {
 
   return (
     <div className="header">
-      <h1>📒 Ghi Chú Cá Nhân</h1>
+      <h1>📝 Ghi Chú Cá Nhân</h1>
 
       <div className="header-right">
         <span className="badge">{count} ghi chú</span>

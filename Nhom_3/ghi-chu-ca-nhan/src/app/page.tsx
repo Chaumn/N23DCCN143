@@ -13,17 +13,24 @@ export type Note = {
 
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [mounted, setMounted] = useState(false);
 
-  // load localStorage
+  // load
   useEffect(() => {
     const saved = localStorage.getItem("notes");
     if (saved) setNotes(JSON.parse(saved));
+    setMounted(true);
   }, []);
 
-  // save
+  // save (đặt trước return)
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
+    if (mounted) {
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
+  }, [notes, mounted]);
+
+  // ✅ return sau khi gọi hết hooks
+  if (!mounted) return null;
 
   const addNote = (text: string) => {
     const newNote: Note = {

@@ -14,12 +14,13 @@ export function ThemeProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") as "light" | "dark";
-    if (saved) setTheme(saved);
-  }, []);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+  if (typeof window !== "undefined") {
+    const saved = localStorage.getItem("theme");
+    return (saved as "light" | "dark") || "light";
+  }
+  return "light";
+});
 
   useEffect(() => {
     document.body.className = theme;
