@@ -1,0 +1,97 @@
+body.light {
+  background: #f3f4f6;
+  color: #111;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #fff;
+}
+
+/* layout */
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+/* header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.badge {
+  background: linear-gradient(45deg, #a855f7, #6366f1);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.theme-btn {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* form */
+.form {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.form button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(45deg, #a855f7, #6366f1);
+  color: white;
+  cursor: pointer;
+}
+
+/* list */
+.list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* note */
+.note {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.dark .note {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.note button {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
