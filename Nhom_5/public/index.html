@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buổi 06 — Form Đăng Ký</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    .forms { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+    h2 { color: #2a7a5e; font-size: 16px; }
+    label { display: block; margin-top: 12px; font-size: 14px; color: #555; }
+    input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    button { margin-top: 14px; width: 100%; padding: 10px; background: #2a7a5e; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #1e5e47; }
+    .result { margin-top: 14px; padding: 10px; background: #f5f5f5; border-radius: 4px; font-size: 13px; min-height: 50px; white-space: pre-wrap; }
+    .error { color: red; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+  <h1>Buổi 06 — Bài tập thực hành</h1>
+
+  <div class="forms">
+    <!-- FORM 1: GET /api/info -->
+    <div class="card">
+      <h2>FORM 1 — GET /api/info</h2>
+
+      <label>Tên</label>
+      <input id="f1-name" type="text" placeholder="Nhập tên..." />
+
+      <label>Tuổi</label>
+      <input id="f1-age" type="number" placeholder="Nhập tuổi..." />
+
+      <button onclick="submitForm1()">Gửi GET /api/info</button>
+      <div class="result" id="result1">Kết quả hiện ở đây...</div>
+    </div>
+
+    <!-- FORM 2: POST /api/register -->
+    <div class="card">
+      <h2>FORM 2 — POST /api/register</h2>
+
+      <label>Tên</label>
+      <input id="f2-name" type="text" placeholder="Nhập tên..." />
+
+      <label>Tuổi</label>
+      <input id="f2-age" type="number" placeholder="Nhập tuổi..." />
+
+      <label>Email</label>
+      <input id="f2-email" type="email" placeholder="Nhập email..." />
+
+      <button onclick="submitForm2()">Gửi POST /api/register</button>
+      <div class="result" id="result2">Kết quả hiện ở đây...</div>
+    </div>
+  </div>
+
+  <script>
+    // FORM 1: Gọi GET /api/info bằng fetch
+    async function submitForm1() {
+      const name = document.getElementById('f1-name').value;
+      const age  = document.getElementById('f1-age').value;
+      const resultDiv = document.getElementById('result1');
+
+      try {
+        const res = await fetch(`/api/info?name=${name}&age=${age}`);
+        const data = await res.json();
+
+        if (res.ok) {
+          resultDiv.className = 'result success';
+          resultDiv.innerHTML = JSON.stringify(data, null, 2);
+        } else {
+          resultDiv.className = 'result error';
+          resultDiv.innerHTML = '❌ ' + data.error;
+        }
+      } catch (err) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = '❌ Lỗi kết nối server';
+      }
+    }
+
+    // FORM 2: Gọi POST /api/register bằng fetch
+    async function submitForm2() {
+      const name  = document.getElementById('f2-name').value;
+      const age   = document.getElementById('f2-age').value;
+      const email = document.getElementById('f2-email').value;
+      const resultDiv = document.getElementById('result2');
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, age, email })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          resultDiv.className = 'result success';
+          resultDiv.innerHTML = '✅ ' + JSON.stringify(data, null, 2);
+        } else {
+          resultDiv.className = 'result error';
+          resultDiv.innerHTML = '❌ ' + data.error;
+        }
+      } catch (err) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = '❌ Lỗi kết nối server';
+      }
+    }
+  </script>
+</body>
+</html>
